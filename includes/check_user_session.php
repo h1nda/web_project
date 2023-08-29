@@ -9,12 +9,10 @@ $stmt->execute([$sid]);
 $result = $stmt->get_result();
 if (!$row = $result->fetch_assoc()) {
         session_destroy();
-        header("location: login.php?error=kickedout");
         $response["message"] = "Session expired and destroyed";
-        exit;
 } else
 {
-    header("location: login.php?error=kickedout");
     $response["message"] = "Valid session";
-    exit;
 }
+echo json_encode($response);
+exit;

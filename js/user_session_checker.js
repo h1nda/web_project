@@ -1,4 +1,4 @@
-var check_session = setInterval(function(){
+function checkSession() {
     fetch("includes/check_user_session.php", {
         method: "GET"
     })
@@ -8,10 +8,19 @@ var check_session = setInterval(function(){
             alert("You have been removed from the queue.");
             window.location.href = "login.php";
         }
+        return true;
     }
     ).catch(error => {
         console.log(error);
     }
     );
-    
+    return false;
+}
+var sessionInterval = setInterval(function(){
+    if (checkSession()) {
+        clearInterval(sessionInterval);
+    }
 }, 100000);
+
+checkSession();
+

@@ -17,13 +17,14 @@ if (!isset($_SESSION["id"])) {
 <body>
     <header>
         <h1>FMIQueues</h1>
+        <a href="includes/logout.php"><button>Logout</button></a>
     </header>
     
-    <main>
+    <main id="main-creation">
         <section class="form-wrapper">
                 
             <h2>Create a new queue</h2>
-                    <form action="includes\create_queue-inc.php" method="POST">
+                    <form id="creation-form" action="includes\create_queue-inc.php" method="POST">
                         <label>Queue name:</label>
                         <input type="text" name="queue_name" required><br>
 
@@ -33,13 +34,19 @@ if (!isset($_SESSION["id"])) {
                         <label>Queue limit:</label>
                         <input type="number" name="queue_limit" min="1" max="100"><br>
 
-                        <label>Entry Method:</label><br>
-                        <input type="radio" id="entryInterval" name="entry_method" value="interval">
-                        <label for="entryInterval">Let somebody in every X minutes</label><br>
-                        
-                        <input type="radio" id="entryManual" name="entry_method" value="manual" checked>
-                        <label for="entryManual">When I let them in</label><br>
-                        
+                        <div id="radio">
+                            <span>
+                                <label>Entry Method:</label><br>
+                                <input type="radio" id="entryInterval" name="entry_method" value="interval">
+                                <label for="entryInterval">Let somebody in every X minutes</label><br>
+                            </span>
+                            
+                            <span>
+                                <input type="radio" id="entryManual" name="entry_method" value="manual" checked>
+                                <label for="entryManual">When I let them in</label><br>
+                            </span> 
+                        </div>
+                            
                         <div id="entryIntervalInput" style="display: none;">
                             <label>Interval Time (1-120 min):</label>
                             <input type="number" id="entryIntervalTime" name="entry_interval" min="1" max="120"><br>
@@ -49,6 +56,8 @@ if (!isset($_SESSION["id"])) {
                         
                         <button type="submit" name="submit">Create queue</button>
                     </form>
+                    <a href="index.php"><button>Cancel</button></a>
+                    
 
         </section>
         

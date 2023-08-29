@@ -8,7 +8,6 @@
         header("location: login.php?error=kickedout");
         exit();
     }
-    require_once "includes/check_user_session.php";
     require_once "includes/db_handler.php" ;
     $qid = $_GET['qid'];
 
@@ -42,25 +41,24 @@
     <link rel="stylesheet" href="css/sidebar.css">
 </head>
 <body>
+    <?php include_once "includes/chat_sidebar.php"; ?>
+    <main>
     <header>
         <h1>FMIQueues</h1>
+        <script type="module" src="js/user_session_end.js"></script>
+        <script src="js/user_session_checker.js"></script>
     </header>
-    <?php include_once "includes/chat_sidebar.php"; ?>
-    
-    <main>
         <section class="open-queue">
-            <h2>QUEUEING for <?php echo $name?></h2>
+            <h2>Queuing for <?php echo $name?>...</h2>
             <p>Students in front of you: X</p>
-            <!-- Displayed when the entry becomes true -->
             <a id="entryLink" href="<?php echo $link; ?>" style="display: none;">Enter the meeting!</a>
             <p id="timer" style="display: none;">Time remaining: <span id="countdown">1:00</span></p>
         <script>
-            // Define a function to poll for the user's entry flag
             var sid = "<?php echo $_SESSION["session_id"]; ?>";
             var qid = "<?php echo $qid; ?>";
         </script>
         <script type="module" src="js/entry.js"></script>
-        <script type="module" src="js/user_session_end.js"></script>
+        
 
         </section>
     </main>

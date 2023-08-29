@@ -16,6 +16,9 @@ function fetchMessages() {
             messages.forEach(message => {
                 var messageDiv = document.createElement("div");
                 messageDiv.classList.add("message");
+                if (message.private == 1) {
+                    messageDiv.classList.add("private");
+                }
             
                 var timestampSpan = document.createElement("span");
                 timestampSpan.classList.add("timestamp");

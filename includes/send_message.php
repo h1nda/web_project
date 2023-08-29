@@ -13,12 +13,13 @@ require_once "db_handler.php"; // Include your database connection
 $qid = $_POST['qid'];
 $uid = isset($_SESSION['fn']) ? $_SESSION['fn'] : $_SESSION['username'];
 $senderStatus = isset($_SESSION['fn']) ? 'student' : 'owner';
-$text = $_POST['text'];
+$text = htmlentities($_POST['text'], ENT_QUOTES, "UTF-8");
 
-if (isset($_SESSION["session_id"])) {
+if (isset($_SESSION["session_id"])) { #student
     $sid = $_SESSION["session_id"];
-    $stmt = $conn->prepare("INSERT INTO messages (qid, uid, sender_status, text, sid) VALUES (?, ?, ?, ?, ?);");
-    $stmt->execute([$qid, $uid, $senderStatus, $text, $sid]);
+    $private = $_POST['private'];
+    $stmt = $conn->prepare("INSERT INTO messages (qid, uid, sender_status, text, sid, private) VALUES (?, ?, ?, ?, ?, ?);");
+    $stmt->execute([$qid, $uid, $senderStatus, $text, $sid, $private]);
 } else {
     $stmt = $conn->prepare("INSERT INTO messages (qid, uid, sender_status, text) VALUES (?, ?, ?, ?);");
     $stmt->execute([$qid, $uid, $senderStatus, $text]);

@@ -12,8 +12,11 @@ if (isset($_SESSION["username"])) {
 }
 $qid = $_POST["qid"];
 require_once "db_handler.php"; // Include your database connection
-
-$stmt = $conn->prepare("SELECT * FROM messages WHERE qid = ? ORDER BY timestamp ASC");
+if ($is_owner) {
+    $stmt = $conn->prepare("SELECT * FROM messages WHERE qid = ? ORDER BY timestamp ASC");
+} else {
+    $stmt = $conn->prepare("SELECT * FROM messages WHERE qid = ? AND private = 0 ORDER BY timestamp ASC;");
+}
 $stmt->execute([$qid]);
 
 $messages = [];

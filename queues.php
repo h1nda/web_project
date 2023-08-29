@@ -51,41 +51,49 @@
     <link rel="stylesheet" href="css/sidebar.css">
 </head>
 <body>
-    <header>
-        <h1>FMIQueues</h1>
-    </header>
     <?php include_once "includes/chat_sidebar.php"; ?>
-    
     <main>
+        
+        <header>
+            <h1>FMIQueues</h1>
+            <a href="includes/logout.php"><button>Logout</button></a>
+        </header>
+
         <section class="open-queue">
-            <h2><?php echo $name?> is OPEN</h2>
-            <button id="copy-button">Copy link to queue</button>
-            <p id="students" style="display:block;">Students Waiting: <span id="numStudents">0</span></p>
-            <p id="no-students" style="display:none;">No students in queue.</p>
-            <button id="invite-button">Invite next</button>
-            <p id="timer" style="display: none;">Time remaining: <span id="countdown">1:00</span></p>
-            <a href="index.php"><button id="close-button">Close queue</button></a>
+                <div id=head>
+                <h2><?php echo $name?> is opened</h2>
+                <a href="index.php"><button id="close-button">Close queue</button></a>
+                </div>
+                
+                <p id="students" style="display:block;">Students Waiting: <span id="numStudents">0</span></p>
+                <p id="no-students" style="display:none;">No students in queue.</p>
+                
+                <p id="timer" style="display: none;">Time remaining: <span id="countdown">1:00</span></p>
+                
+                <div id=queue-buttons>
+                    <button id="invite-button">Invite next</button>
+                    <button id="copy-button">Copy link to queue</button>
+                </div>
+                <?php if ($interval) { ?>
+                    <p>Queue Interval: <?php echo $interval; ?> minutes</p>
+                    <div id="interval_timer">Countdown: <span id="interval_countdown"></span></div>
+                    <script>
+                        var intervalInMinutes = <?php echo $interval; ?>;
+                        var qid = "<?php echo $qid; ?>";
+                    </script>
+                    <script type="module" src="js/countdown_timer.js"></script>
+                <?php } ?>
 
-            <?php if ($interval) { ?>
-                <p>Queue Interval: <?php echo $interval; ?> minutes</p>
-                <div id="interval_timer">Countdown: <span id="interval_countdown"></span></div>
                 <script>
-                    var intervalInMinutes = <?php echo $interval; ?>;
                     var qid = "<?php echo $qid; ?>";
+                    var joinlink = window.location.origin + "/web_project/login.php?qid=" + encodeURIComponent(qid);
+                    navigator.clipboard.writeText(joinlink);
                 </script>
-                <script type="module" src="js/countdown_timer.js"></script>
-            <?php } ?>
 
-            <script>
-                var qid = "<?php echo $qid; ?>";
-                var joinlink = window.location.origin + "/web_project/login.php?qid=" + encodeURIComponent(qid);
-                navigator.clipboard.writeText(joinlink);
-            </script>
-
-            <script type="module" src="js/send_invite.js"></script>
-            <script src="js/poll_waiting_students.js"></script>
-            <script src="js/close_queue.js"></script>
-            
+                <script type="module" src="js/send_invite.js"></script>
+                <script src="js/poll_waiting_students.js"></script>
+                <script src="js/close_queue.js"></script>
+                
 
         </section>
     </main>

@@ -1,4 +1,6 @@
 /* Apply styles to the main content container */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
 #login-page {
     display: flex;
     justify-content: center; /* Horizontally center the sections */
@@ -7,56 +9,99 @@
 /* Apply styles to input boxes */
 
 body {
-    font-family: Tahoma, Arial, sans-serif;
-    background-color: rgb(226, 250, 255);
+    font-family: 'Roboto', sans-serif;
+    color: #1C1B1F;
+    background-color:#FFFBFE;
 }
 
 input {
-    border-radius: 10px;
-    height: 35px;
-    margin-bottom: 10px;
+    border: 1px solid #E7E0EC;
+    padding: 10px;
+    border-radius: 8px;
+    outline: #EADDFF;
+}
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+#main-creation {
+    align-items: center;
+}
+.open-queue {
+    height: fit-content;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#head, #queue-buttons, header, #welcome {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+}
+
+header, #welcome {
+    justify-content: space-between;
 }
 
 .form-wrapper {
-    background-color: white;
+    background-color:#E7E0EC;
     border-radius: 10px;
     border: 1px solid #ddd;
     margin: 10px;
-    width: 250px;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center horizontally */
-    justify-content: center; /* Center vertically */
+    align-items: center;
+    justify-content: stretch;
 }
+form > input {
+    margin-bottom: 10px;
+}
+#radio {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    padding:15px;
+}
+
 
 .sections-wrapper {
     display: flex; /* Display children (sections) in a row */
+    justify-content: center;
+}
+#teacher-section, #student-section {
+    display: flex; /* Display children (sections) in a row */
+    align-items: center;
+    flex-direction: column;
+
 }
 /* Apply common styles to buttons and input fields */
 button {
-    color: white;
+    color: #FFFFFF;
+    font-weight: bold;
+    border-radius: 20px;
     border: none;
-    border-radius: 10px;
     padding: 10px 20px;
     margin: 10px;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s;
-    background-color: rgb(135, 163, 232);
-
-}
-
-/* Style sign-up button */
-.form-wrapper button {
-    background-color: rgb(120, 209, 112);
+    transition: box-shadow .3s;
+    background-color: #6750A4;
 
 }
 
 .queues {
-    width: 50%;
-    align-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
 }
 table {
-    width: 100%;
     background-color: #FFFFFF;
     border-collapse: collapse;
     border-width: 2px;
@@ -80,5 +125,5 @@ table {
 
 /* Apply darker background on button hover */
 button:hover {
-    background-image: linear-gradient(rgb(0 0 0/40%) 0 0);
+    box-shadow: 0 0 5px #E7E0EC;
   }

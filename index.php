@@ -17,15 +17,17 @@ if (!isset($_SESSION["id"])) {
 <body>
     <header>
         <h1>FMIQueues</h1>
-        <a href="logout.php"><button>Logout</button></a>
+        <a href="includes/logout.php"><button>Logout</button></a>
     </header>
     
     <main>
-        <h2>Welcome back, <?php echo $_SESSION["username"] ?>!</h2>
-        <a href="queue_creation.php"><button>Create a new queue</button></a>
+        <div id="welcome">
+            <h2>Welcome back, <?php echo $_SESSION["username"] ?>!</h2>
+            <a href="queue_creation.php"><button>Create a new queue</button></a>
+        </div>
 
         <section class=queues>
-            <h3>Your queues</h3><br>
+            <h1>Your queues</h1><br>
             <table>
                 <thead>
                     <tr>
