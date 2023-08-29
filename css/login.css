@@ -1,0 +1,84 @@
+/* Apply styles to the main content container */
+#login-page {
+    display: flex;
+    justify-content: center; /* Horizontally center the sections */
+    align-items: center; /* Vertically center the sections */
+}
+/* Apply styles to input boxes */
+
+body {
+    font-family: Tahoma, Arial, sans-serif;
+    background-color: rgb(226, 250, 255);
+}
+
+input {
+    border-radius: 10px;
+    height: 35px;
+    margin-bottom: 10px;
+}
+
+.form-wrapper {
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    margin: 10px;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center horizontally */
+    justify-content: center; /* Center vertically */
+}
+
+.sections-wrapper {
+    display: flex; /* Display children (sections) in a row */
+}
+/* Apply common styles to buttons and input fields */
+button {
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    background-color: rgb(135, 163, 232);
+
+}
+
+/* Style sign-up button */
+.form-wrapper button {
+    background-color: rgb(120, 209, 112);
+
+}
+
+.queues {
+    width: 50%;
+    align-self: center;
+}
+table {
+    width: 100%;
+    background-color: #FFFFFF;
+    border-collapse: collapse;
+    border-width: 2px;
+    border-color: #7EA8F8;
+    border-style: solid;
+    color: #000000;
+  }
+  
+  table td, table th {
+    border-width: 2px;
+    border-color: #7EA8F8;
+    border-style: solid;
+    text-align: center;
+    padding: 5px;
+  }
+  
+  table thead {
+    background-color: #7EA8F8;
+  }
+  
+
+/* Apply darker background on button hover */
+button:hover {
+    background-image: linear-gradient(rgb(0 0 0/40%) 0 0);
+  }
