@@ -1,7 +1,6 @@
 
 // Get all elements with class 'queue-button'
 var queueButtons = document.querySelectorAll(".queue-button");
-console.log(queueButtons);
 // Attach event listeners to each 'queue-button'
 queueButtons.forEach(function(button) {
     button.addEventListener("click", function() {
@@ -13,7 +12,6 @@ queueButtons.forEach(function(button) {
 
 // Get all elements with class 'queue-button'
 var queueButtons = document.querySelectorAll(".remove-button");
-console.log(queueButtons);
 // Attach event listeners to each 'queue-button'
 queueButtons.forEach(function(button) {
     button.addEventListener("click", function() {

@@ -39,6 +39,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FMI queues</title>
     <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/sidebar.css">
 </head>
 <body>
     <header>
@@ -53,7 +54,6 @@
             <!-- Displayed when the entry becomes true -->
             <a id="entryLink" href="<?php echo $link; ?>" style="display: none;">Enter the meeting!</a>
             <p id="timer" style="display: none;">Time remaining: <span id="countdown">1:00</span></p>
-            <?php echo $_SESSION["session_id"]; ?>
         <script>
             // Define a function to poll for the user's entry flag
             var sid = "<?php echo $_SESSION["session_id"]; ?>";

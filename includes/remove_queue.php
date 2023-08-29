@@ -3,17 +3,7 @@ session_start();
 require_once "db_handler.php";
 $response = [];
 $qid = $_POST['qid'];
-// Remove entries from queue_waiting table
-$removeEntriesQuery = "DELETE FROM queue_waiting WHERE id = ?";
-$removeEntriesStmt = mysqli_stmt_init($conn);
 
-if (mysqli_stmt_prepare($removeEntriesStmt, $removeEntriesQuery)) {
-    mysqli_stmt_bind_param($removeEntriesStmt, "s", $qid);
-    mysqli_stmt_execute($removeEntriesStmt);
-    mysqli_stmt_close($removeEntriesStmt);
-}
-
-// Update status in queue_info table
 $updateStatusQuery = "DELETE FROM queue_info WHERE id = ?";
 $updateStatusStmt = mysqli_stmt_init($conn);
 

@@ -1,6 +1,7 @@
 <div id="sidebar">
         <div id="sidebar-header">
             <h2>Chat</h2>
+            <?php if (isset($_SESSION["username"])) {echo $_SESSION["username"];} else {echo $_SESSION["fn"];}; ?>
         </div>
 
         <div id="message-container">
@@ -14,3 +15,5 @@
             </form>
         </div>
     </div>
+<script type="module" src="js/fetch_messages.js"></script>
+<script src="js/send_message.js"></script>

@@ -15,19 +15,15 @@ $uid = isset($_SESSION['fn']) ? $_SESSION['fn'] : $_SESSION['username'];
 $senderStatus = isset($_SESSION['fn']) ? 'student' : 'owner';
 $text = $_POST['text'];
 
-$query = "INSERT INTO messages (qid, uid, sender_status, text) VALUES (?, ?, ?, ?)";
-$stmt = mysqli_stmt_init($conn);
-
-if (!mysqli_stmt_prepare($stmt, $query)) {
-    header('Content-Type: application/json');
-    echo json_encode(['error' => 'Database error']);
-    exit();
+if (isset($_SESSION["session_id"])) {
+    $sid = $_SESSION["session_id"];
+    $stmt = $conn->prepare("INSERT INTO messages (qid, uid, sender_status, text, sid) VALUES (?, ?, ?, ?, ?);");
+    $stmt->execute([$qid, $uid, $senderStatus, $text, $sid]);
 } else {
-    mysqli_stmt_bind_param($stmt, "ssss", $qid, $uid, $senderStatus, $text);
-    mysqli_stmt_execute($stmt);
-    mysqli_stmt_close($stmt);
-    
-    header('Content-Type: application/json');
-    echo json_encode(['message' => 'Message sent successfully']);
-    exit();
+    $stmt = $conn->prepare("INSERT INTO messages (qid, uid, sender_status, text) VALUES (?, ?, ?, ?);");
+    $stmt->execute([$qid, $uid, $senderStatus, $text]);
 }
+
+header('Content-Type: application/json');
+echo json_encode(['message' => 'Message sent successfully']);
+exit;

@@ -49,7 +49,6 @@
     <title>FMI queues</title>
     <link rel="stylesheet" href="css/login.css">
     <link rel="stylesheet" href="css/sidebar.css">
-    <script src="js/fetch_messages.js"></script>
 </head>
 <body>
     <header>
@@ -86,7 +85,6 @@
             <script type="module" src="js/send_invite.js"></script>
             <script src="js/poll_waiting_students.js"></script>
             <script src="js/close_queue.js"></script>
-            <script src=js/send_message.js></script>
             
 
         </section>

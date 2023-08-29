@@ -28,15 +28,18 @@ function studentRemoved_(qid, sid) {
     });
 }
 
-function clearTimer(qid, sid) {
+function clearTimer(qid, sid, temporary=false) {
     clearInterval(timerInterval); // Stop the timer
     countdown = 60;
-    callRemoval(qid, sid);
+    if (!temporary) {
+        callRemoval(qid, sid);
+    }
+    
     document.getElementById("countdown").textContent = "1:00";
     document.getElementById("timer").style.display = "none";
 }
 
-export function startTimer(qid, sid) {
+export function startTimer(qid, sid, temporary=false) {
     document.getElementById("timer").style.display = "block";
     timerInterval = setInterval(function() { // Assign to timerInterval here
         countdown--;
@@ -44,7 +47,7 @@ export function startTimer(qid, sid) {
         studentRemoved_(qid, sid);
 
         if (countdown === 0) {
-            clearTimer(qid, sid);
+            clearTimer(qid, sid, temporary);
         }
     }, 1000); // Update every 1 second
 }

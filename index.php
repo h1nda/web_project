@@ -17,6 +17,7 @@ if (!isset($_SESSION["id"])) {
 <body>
     <header>
         <h1>FMIQueues</h1>
+        <a href="logout.php"><button>Logout</button></a>
     </header>
     
     <main>

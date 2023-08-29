@@ -9,46 +9,29 @@ if (!isset($_POST['qid'])) {
 require_once "db_handler.php";
 
 $qid = $_POST['qid'];
-$query = "SELECT * FROM queue_waiting WHERE id = ? ORDER BY timestamp ASC LIMIT 1;";
-$stmt = mysqli_stmt_init($conn);
-
-if (!mysqli_stmt_prepare($stmt, $query)) {
-    echo json_encode(['error' => 'Statement prep failed']);
-    exit;
+if (!isset($_POST['sid'])) {
+    $stmt = $conn->prepare("SELECT * FROM queue_waiting WHERE id = ? ORDER BY timestamp ASC LIMIT 1");
+    $stmt->execute([$qid]);
+} else {
+    $sid = $_POST['sid'];
+    $stmt = $conn->prepare("SELECT * FROM queue_waiting WHERE id = ? AND session_id = ?");
+    $stmt->execute([$qid, $sid]);
 }
-
-mysqli_stmt_bind_param($stmt, "s", $qid);
-mysqli_stmt_execute($stmt);
-
-$result = mysqli_stmt_get_result($stmt);
 
 $response = [];
 
-// Fetch the first row (user with earliest timestamp)
-if ($row = mysqli_fetch_assoc($result)) {
-    $earliestUser = $row;
-    $response['student_sid'] = $earliestUser['session_id'];
+if ($row = $stmt->get_result()->fetch_assoc()) {
+    $student = $row;
+    $response['student_sid'] = $student['session_id'];
 
-    // Update the 'entry' column to true for the earliest user
-    $updateQuery = "UPDATE queue_waiting SET enter = 1 WHERE session_id = ?";
-    $updateStmt = mysqli_stmt_init($conn);
+    $update_stmt = $conn->prepare("UPDATE queue_waiting SET enter = ? WHERE session_id = ?");
+    $enter = isset($_POST["temporary"]) ? 2 : 1;
+    $update_stmt->execute([$enter, $response['student_sid']]);
+    $response['message'] = 'Sent invite to '. $student['session_id'];
 
-    if (mysqli_stmt_prepare($updateStmt, $updateQuery)) {
-        mysqli_stmt_bind_param($updateStmt, "s", $earliestUser['session_id']);
-        mysqli_stmt_execute($updateStmt);
-
-        // Close the update statement
-        mysqli_stmt_close($updateStmt);
-
-        $response['message'] = 'Sent invite to '. $earliestUser['session_id'];
-    } else {
-        $response['error'] = 'Update failed';
-    }
 } else {
-    $response['message'] = 'No students waiting';
+    $response['message'] = 'Student not in queue';
 }
-mysqli_stmt_close($stmt);
-
 // Output the JSON response
 echo json_encode($response);
 exit;
