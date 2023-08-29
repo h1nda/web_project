@@ -1,10 +1,10 @@
 import { sendInvite } from "./send_invite.js";
- // JavaScript code to implement countdown timer
+
  var countdown = intervalInMinutes * 60;
  var timerInterval; 
 
  function restartCountdown() {
-    clearInterval(timerInterval); // Stop the timer
+    clearInterval(timerInterval); 
     countdown = intervalInMinutes * 60;
     sendInvite(qid);
     updateCountDown();

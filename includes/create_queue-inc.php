@@ -18,24 +18,19 @@ if (isset($_POST["submit"])) {
     } else {
         $query = "INSERT INTO queue_info (id, user_id, link, queue_name, queue_limit, entry_method) VALUES (?, ?, ?, ?, ?, ?);";
     }
-    
+    $stmt = $conn->prepare($query);
 
-    $stmt = mysqli_stmt_init($conn);
-    if (!mysqli_stmt_prepare($stmt, $query)) {
-        header("location: ../queue_creation.php?error=dbfail");
+    if ($method == 'interval') {
+       $stmt->execute([$qid, $_SESSION["id"], $link, $queue_name, $limit, $method, $interval]);
     } else {
-        if ($method == 'interval') {
-            mysqli_stmt_bind_param($stmt, "sissisi", $qid, $_SESSION["id"], $link, $queue_name, $limit, $method, $interval);
-        } else {
-            mysqli_stmt_bind_param($stmt, "sissis", $qid, $_SESSION["id"], $link, $queue_name, $limit, $method);
-        }
+        $stmt->execute([$qid, $_SESSION["id"], $link, $queue_name, $limit, $method]);
+    }
         
-        mysqli_stmt_execute($stmt);
-        mysqli_stmt_close($stmt);
-        header("location: ../index.php?error=none");
-        exit();
-        }
+    header("Content-Type: application/json");
+    echo json_encode(["message" => "Queue creation successful"]);
+    exit;
 } else {
-    header("location: ../queue_creation.php?error=fillform");
-    exit();
+    header("Content-Type: application/json");
+    echo json_encode(["error" => "No POST request"]);
+    exit;
 }

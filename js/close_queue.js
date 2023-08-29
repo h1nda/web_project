@@ -4,18 +4,16 @@ var closeButton = document.getElementById("close-button");
         closeButton.addEventListener("click", function() {
             var fd = new FormData();
             fd.append("qid", qid);
-            
-            // Send AJAX request using fetch
             fetch("includes/close.php", {
                 method: "POST",
                 body: fd
             })
             .then(response => response.json())
             .then(data => {
-                console.log(data); // Handle response if needed
+                console.log(data);
             })
             .catch(error => {
-                console.log(error); // Handle errors if any
+                console.log(error);
             });
         });
     };

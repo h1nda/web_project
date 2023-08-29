@@ -40,7 +40,7 @@ if (!isset($_SESSION["id"])) {
                 </thead>
                 <tbody>
                     <?php
-                        require_once "includes/fetch_queue-inc.php"
+                        require_once "includes/queue_table.php"
                     ?>
                 </tbody>
             </table>

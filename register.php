@@ -12,12 +12,11 @@
     </header>
     
     <main>
-        <!-- Teacher Section -->
         <section class="sections-wrapper">
             <section class="form-wrapper">
             
                 <h2>Register</h2>
-                    <form action="includes/register-inc.php" method="POST">
+                    <form action="includes/register_logic.php" method="POST">
                     <input type="text" name="name" placeholder="Name" required>
                         <input type="text" name="username" placeholder="Username" required>
                         <input type="email" name="email" placeholder="E-mail" required>

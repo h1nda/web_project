@@ -13,8 +13,8 @@ function pollEntryFlag(qid, sid) {
         .then(response => response.json())
         .then(data => {
             if (data.enter > 0) {
-                clearInterval(interval); // Stop polling
-                // Redirect or perform other actions for user entry
+                clearInterval(interval);
+            
                 const link = document.getElementById("entryLink");
                 link.style.display = "block";
                 document.getElementById("timer").style.display = "block";
@@ -31,9 +31,7 @@ function pollEntryFlag(qid, sid) {
                     
                 } else {
                     link.addEventListener("click", function() {
-                        // Call the removal function
                         callRemoval(qid, sid);
-                        // Start the timer
                         startTimer(qid, sid);
                         
                     }); 
@@ -41,8 +39,7 @@ function pollEntryFlag(qid, sid) {
                 
             }
         });
-    }, 5000); // Poll every 5 seconds
+    }, 5000);
 }
 
-// Call the function to start polling when needed
 pollEntryFlag(qid, sid);

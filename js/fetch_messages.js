@@ -11,7 +11,7 @@ function fetchMessages() {
             var is_owner = json_resp["is_owner"];
 
             var messageContainer = document.getElementById("message-container");
-            messageContainer.innerHTML = ""; // Clear existing messages
+            messageContainer.innerHTML = "";
             
             messages.forEach(message => {
                 var messageDiv = document.createElement("div");
@@ -69,8 +69,6 @@ function fetchMessages() {
                 messageContainer.appendChild(messageDiv);
             });
             
-            
-            // Scroll to the bottom
             messageContainer.scrollTop = messageContainer.scrollHeight;
         })
         .catch(error => {
@@ -79,6 +77,6 @@ function fetchMessages() {
 }
 
 window.addEventListener("load", function() {
-    fetchMessages(); // Fetch messages immediately
-    setInterval(fetchMessages, 2500); // Fetch messages every 5 seconds
+    fetchMessages();
+    setInterval(fetchMessages, 2500);
 });

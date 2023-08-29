@@ -1,3 +1,4 @@
+import { callRemoval } from "./remove.js"; 
 function checkSession() {
     fetch("includes/check_user_session.php", {
         method: "GET"
@@ -21,6 +22,10 @@ var sessionInterval = setInterval(function(){
         clearInterval(sessionInterval);
     }
 }, 100000);
+
+window.addEventListener("beforeunload", function () {
+    callRemoval(qid, sid);
+});
 
 checkSession();
 

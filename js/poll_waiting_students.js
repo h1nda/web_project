@@ -13,14 +13,12 @@ function pollWaitingStudents(qid) {
                 document.getElementById("no-students").style.display = "block";
                 document.getElementById("students").style.display = "none";
             } else {
-            // Update the UI with the number of waiting students
             document.getElementById("students").style.display = "block";
             document.getElementById("no-students").style.display = "none";
             }
             document.getElementById("numStudents").textContent = numStudents;
         });
-    }, 5000); // Poll every 10 seconds
+    }, 5000);
 }
 
-// Call the function to start polling when needed
-pollWaitingStudents(qid); // Pass the PHP variable value
+pollWaitingStudents(qid);

@@ -6,8 +6,6 @@ export function permanent(li) {
         let fd = new FormData();
         fd.append("sid", sid);
         fd.append("qid", qid);
-        // Create an object to send as POST data
-        // Send AJAX request using fetch
         fetch("includes/invite_student.php", {
             method: "POST",
             body: fd
@@ -41,8 +39,6 @@ export function temporarily(li) {
         fd.append("sid", sid);
         fd.append("qid", qid);
         fd.append("temporary", 1);
-        // Create an object to send as POST data
-        // Send AJAX request using fetch
         fetch("includes/invite_student.php", {
             method: "POST",
             body: fd

@@ -12,7 +12,6 @@
     </header>
     
     <main id="login-page">
-        <!-- Teacher Section -->
         <section class="sections-wrapper">
 
             <section id="teacher-section">
@@ -20,7 +19,7 @@
 
                 <div class="form-wrapper">
                     <h3>Log in</h3>
-                    <form action="includes/login-inc.php" action method="POST">
+                    <form action="includes/login_logic.php" action method="POST">
                         <input type="text" name="username" placeholder="Username or e-mail" required>
                         <input type="password" name="pwd" placeholder="Password" required>
                         <button type="submit" name="submit">Log In</button>
@@ -38,13 +37,12 @@
                 <a href="register.php"><button>Create a new account</button></a>
             </section>
             
-            <!-- Student Section -->
             <section id="student-section">
                 <h2>For Students</h2>
                 
                 <div class="form-wrapper">
                     <h3>Join Queue</h3>
-                    <form action="includes/join-inc.php" method="POST">
+                    <form action="includes/join_logic.php" method="POST">
                         <input type="text" name="fn" placeholder="FN" required><br>
                         <input type="text" name="queue-id" placeholder="Queue ID" <?php if (isset($_GET["qid"])) { echo 'value="' . $_GET["qid"] . '"'; } ?> required><br>
                         <button type="submit" name="submit">Join</button>

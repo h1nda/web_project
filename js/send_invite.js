@@ -4,8 +4,6 @@ export function sendInvite(qid) {
     console.log(`Trying to send invite for ${qid}`)
     let fd = new FormData();
     fd.append("qid", qid);
-    // Create an object to send as POST data
-    // Send AJAX request using fetch
     fetch("includes/invite_student.php", {
         method: "POST",
         body: fd
@@ -31,6 +29,6 @@ export function sendInvite(qid) {
 var inviteButton = document.getElementById("invite-button");
 if (inviteButton) {
     inviteButton.addEventListener("click", function() {
-        sendInvite(qid); // Call the sendInvite function when the button is clicked
+        sendInvite(qid);
     });
 };

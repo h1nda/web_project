@@ -45,8 +45,7 @@
     <main>
     <header>
         <h1>FMIQueues</h1>
-        <script type="module" src="js/user_session_end.js"></script>
-        <script src="js/user_session_checker.js"></script>
+        <script type="module" src="js/user_session.js"></script>
     </header>
         <section class="open-queue">
             <h2>Queuing for <?php echo $name?>...</h2>

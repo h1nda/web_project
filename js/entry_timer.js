@@ -1,6 +1,6 @@
 import { callRemoval } from "./remove.js";
 var countdown = 60;
-var timerInterval; // Declare timerInterval here
+var timerInterval;
 
 function updateTimer() {
     var minutes = Math.floor(countdown / 60);
@@ -11,8 +11,6 @@ function updateTimer() {
 function studentRemoved_(qid, sid) {
     let fd = new FormData();
     fd.append("sid", sid);
-    // Create an object to send as POST data
-    // Send AJAX request using fetch
     fetch("includes/check_user_waiting.php", {
         method: "POST",
         body: fd
@@ -29,7 +27,7 @@ function studentRemoved_(qid, sid) {
 }
 
 function clearTimer(qid, sid, temporary=false) {
-    clearInterval(timerInterval); // Stop the timer
+    clearInterval(timerInterval);
     countdown = 60;
     if (!temporary) {
         callRemoval(qid, sid);
@@ -41,7 +39,7 @@ function clearTimer(qid, sid, temporary=false) {
 
 export function startTimer(qid, sid, temporary=false) {
     document.getElementById("timer").style.display = "block";
-    timerInterval = setInterval(function() { // Assign to timerInterval here
+    timerInterval = setInterval(function() {
         countdown--;
         updateTimer();
         studentRemoved_(qid, sid);
@@ -49,5 +47,5 @@ export function startTimer(qid, sid, temporary=false) {
         if (countdown === 0) {
             clearTimer(qid, sid, temporary);
         }
-    }, 1000); // Update every 1 second
+    }, 1000);
 }
