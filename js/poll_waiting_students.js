@@ -2,7 +2,7 @@ function pollWaitingStudents(qid) {
     fd = new FormData();
     fd.append("qid", qid);
     setInterval(function() {
-        fetch("includes/num_waiting_students.php", {
+        fetch("includes/waiting_students.php", {
             method: "POST",
             body: fd
         })

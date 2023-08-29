@@ -12,7 +12,7 @@ if (!isset($_SESSION["id"])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FMI queues</title>
-    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <header>
@@ -24,7 +24,7 @@ if (!isset($_SESSION["id"])) {
         <section class="form-wrapper">
                 
             <h2>Create a new queue</h2>
-                    <form id="creation-form" action="includes\create_queue-inc.php" method="POST">
+                    <form id="creation-form" action="includes\queue_creation_logic.php" method="POST">
                         <label>Queue name:</label>
                         <input type="text" name="queue_name" required><br>
 
