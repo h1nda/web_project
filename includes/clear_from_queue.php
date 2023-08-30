@@ -17,10 +17,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $del_stmt->execute([$qid, $sid]);
     $response['message'] = "User deleted successfuly.";
-
 } else {
     $response["error"] = "No POST request";
 }
 echo json_encode($response);
 exit;
-?>

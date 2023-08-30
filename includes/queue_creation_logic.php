@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 if (isset($_POST["submit"])) {
     $queue_name = $_POST["queue_name"];
@@ -6,7 +6,7 @@ if (isset($_POST["submit"])) {
     $limit = $_POST["queue_limit"];
     $method = $_POST["entry_method"];
 
-    
+
 
     require_once "db_handler.php";
 
@@ -21,11 +21,11 @@ if (isset($_POST["submit"])) {
     $stmt = $conn->prepare($query);
 
     if ($method == 'interval') {
-       $stmt->execute([$qid, $_SESSION["id"], $link, $queue_name, $limit, $method, $interval]);
+        $stmt->execute([$qid, $_SESSION["id"], $link, $queue_name, $limit, $method, $interval]);
     } else {
         $stmt->execute([$qid, $_SESSION["id"], $link, $queue_name, $limit, $method]);
     }
-        
+
     header("location: ../index.php?successful");
     exit;
 } else {

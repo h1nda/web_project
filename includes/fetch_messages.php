@@ -28,4 +28,3 @@ while ($row = $res->fetch_assoc()) {
 header("Content-Type: application/json");
 echo json_encode(["messages" => $messages, "is_owner" => $is_owner]);
 exit;
-    

@@ -1,9 +1,11 @@
 <?php
-function matchPass($reppwd, $pwd) {
+function matchPass($reppwd, $pwd)
+{
     return $reppwd == $pwd;
 }
 
-function userExists($conn, $username, $email) {
+function userExists($conn, $username, $email)
+{
     $stmt = $conn->prepare("SELECT * FROM users WHERE username = ? OR email = ?;");
     $stmt->execute([$username, $email]);
     $res = $stmt->get_result();
@@ -15,7 +17,8 @@ function userExists($conn, $username, $email) {
     }
 }
 
-function createUser($conn, $name, $username, $email, $pwd) {
+function createUser($conn, $name, $username, $email, $pwd)
+{
     $stmt = $conn->prepare("INSERT INTO users (name, username, email, pass) VALUES (?, ?, ?, ?);");
     $pwdhash = password_hash($pwd, PASSWORD_DEFAULT);
     $stmt->execute([$name, $username, $email, $pwdhash]);
@@ -23,7 +26,8 @@ function createUser($conn, $name, $username, $email, $pwd) {
     exit();
 }
 
-function loginUser($conn, $username, $pwd) {
+function loginUser($conn, $username, $pwd)
+{
     $user = userExists($conn, $username, $username);
     if (!$user) {
         header("location: ../login.php?error=loginerror");

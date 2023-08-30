@@ -21,7 +21,6 @@ if (isset($_POST["submit"])) {
     }
 
     createUser($conn, $name, $username, $email, $pwd);
-}
-else {
+} else {
     header("location: ../register.php");
 }

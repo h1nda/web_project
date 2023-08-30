@@ -35,4 +35,3 @@ if ($row = $stmt->get_result()->fetch_assoc()) {
 // Output the JSON response
 echo json_encode($response);
 exit;
-?>

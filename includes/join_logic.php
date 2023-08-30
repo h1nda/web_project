@@ -19,7 +19,6 @@ if (isset($_POST["submit"])) {
             header("location: ../login.php?error=queueclosed");
             exit;
         }
-
     } else {
         header("location: ../login.php?error=queuedoesntexist");
         exit;

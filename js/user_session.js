@@ -1,31 +1,29 @@
-import { callRemoval } from "./remove.js"; 
+import { callRemoval } from "./remove.js";
 function checkSession() {
-    fetch("includes/check_user_session.php", {
-        method: "GET"
+  fetch("includes/check_user_session.php", {
+    method: "GET",
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.message === "Session expired and destroyed") {
+        alert("You have been removed from the queue.");
+        window.location.href = "login.php";
+      }
+      return true;
     })
-    .then(response => response.json())
-    .then(data => {
-        if (data.message === "Session expired and destroyed") {
-            alert("You have been removed from the queue.");
-            window.location.href = "login.php";
-        }
-        return true;
-    }
-    ).catch(error => {
-        console.log(error);
-    }
-    );
-    return false;
+    .catch((error) => {
+      console.log(error);
+    });
+  return false;
 }
-var sessionInterval = setInterval(function(){
-    if (checkSession()) {
-        clearInterval(sessionInterval);
-    }
+var sessionInterval = setInterval(function () {
+  if (checkSession()) {
+    clearInterval(sessionInterval);
+  }
 }, 100000);
 
 window.addEventListener("beforeunload", function () {
-    callRemoval(qid, sid);
+  callRemoval(qid, sid);
 });
 
 checkSession();
-
