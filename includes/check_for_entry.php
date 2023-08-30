@@ -1,12 +1,10 @@
 <?php
 session_start();
-include 'db_handler.php'; // Include your database connection script
+include 'db_handler.php';
 $response = [];
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (isset($_POST["sid"])) {
         $sid = $_POST["sid"];
-
-        // Prepare and execute the SQL statement to check the user's entry flag
         $stmt = $conn->prepare("SELECT enter FROM queue_waiting WHERE session_id = ?;");
         $stmt->execute([$sid]);
         $result = $stmt->get_result();

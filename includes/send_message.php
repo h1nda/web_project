@@ -17,7 +17,7 @@ $text = htmlentities($_POST['text'], ENT_QUOTES, "UTF-8");
 
 if (isset($_SESSION["session_id"])) { #student
     $sid = $_SESSION["session_id"];
-    $private = $_POST['private'];
+    $private = $_POST['private'] ? 1 : 0;
     $stmt = $conn->prepare("INSERT INTO messages (qid, uid, sender_status, text, sid, private) VALUES (?, ?, ?, ?, ?, ?);");
     $stmt->execute([$qid, $uid, $senderStatus, $text, $sid, $private]);
 } else {

@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $result = $stmt->get_result();
     $row = $result->fetch_assoc();
     header("Content-Type: application/json");
-    echo json_encode(["num_students" => $row["num_students"]]);
+    echo json_encode(["num_students" => $row["num_students"], "sid_set" => $student_req]);
     exit;
 } else {
     header("Content-Type: application/json");
