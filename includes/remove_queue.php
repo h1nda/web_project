@@ -6,7 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 $qid = $_POST['qid'];
 
 $stmt = $conn->prepare("DELETE FROM queue_info WHERE id = ?");
-$stmt->execute([$sid]);
+$stmt->execute([$qid]);
 
 header("Content-Type: application/json");
 echo json_encode(["message" => "Entries removed and status updated"]);

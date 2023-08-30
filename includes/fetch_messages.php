@@ -11,13 +11,14 @@ if (isset($_SESSION["username"])) {
     $is_owner = 0;
 }
 $qid = $_POST["qid"];
-require_once "db_handler.php"; // Include your database connection
+require_once "db_handler.php";
 if ($is_owner) {
     $stmt = $conn->prepare("SELECT * FROM messages WHERE qid = ? ORDER BY timestamp ASC");
+    $stmt->execute([$qid]);
 } else {
-    $stmt = $conn->prepare("SELECT * FROM messages WHERE qid = ? AND private = 0 ORDER BY timestamp ASC;");
+    $stmt = $conn->prepare("SELECT * FROM messages WHERE qid = ? AND (private = 0 OR (private = 1 AND uid = ?)) ORDER BY timestamp ASC;");
+    $stmt->execute([$qid, $_SESSION["fn"]]);
 }
-$stmt->execute([$qid]);
 
 $messages = [];
 $res = $stmt->get_result();

@@ -30,7 +30,7 @@ if ($row = $stmt->get_result()->fetch_assoc()) {
     $response['message'] = 'Sent invite to '. $student['session_id'];
 
 } else {
-    $response['message'] = 'Student not in queue';
+    $response['message'] = 'Student not in queue or no students';
 }
 // Output the JSON response
 echo json_encode($response);

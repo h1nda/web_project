@@ -11,9 +11,10 @@ export function sendInvite(qid) {
     .then(response => response.json())
     .then(data => {
         console.log(data);
-        if (data.message === 'No students waiting') {
+        if (data.message === 'Student not in queue or no students') {
                 document.getElementById("no-students").style.display = "block";
                 document.getElementById("numStudents").textContent = 0;
+                alert(data.message);
                 return null;
         } else {
             startTimer(qid, data.student_sid);

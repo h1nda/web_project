@@ -11,7 +11,7 @@ if (isset($_POST["submit"])) {
     require_once "db_handler.php";
 
     $stmt = $conn->prepare("SELECT status FROM queue_info WHERE id=?;");
-    $stmt->execute($qid);
+    $stmt->execute([$qid]);
     $res = $stmt->get_result();
     if ($row = $res->fetch_assoc()) {
 
@@ -21,11 +21,11 @@ if (isset($_POST["submit"])) {
         }
 
     } else {
-        header("location: ../login.php?error=unknown");
+        header("location: ../login.php?error=queuedoesntexist");
         exit;
     }
     $stmt_add = $conn->prepare("INSERT INTO queue_waiting (id, session_id, fn) VALUES (?, ?, ?);");
-    $stmt->execute([ $qid, $_SESSION["session_id"], $fn]);
+    $stmt_add->execute([$qid, $_SESSION["session_id"], $fn]);
 
     header("Location: ../waiting_room.php?qid=$qid");
     exit;

@@ -49,6 +49,7 @@
     <title>FMI queues</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="icon" type="image/x-icon" href="media/favicon.ico">
 </head>
 <body>
     <?php include_once "includes/chat_sidebar.php"; ?>

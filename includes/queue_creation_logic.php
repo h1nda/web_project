@@ -26,11 +26,9 @@ if (isset($_POST["submit"])) {
         $stmt->execute([$qid, $_SESSION["id"], $link, $queue_name, $limit, $method]);
     }
         
-    header("Content-Type: application/json");
-    echo json_encode(["message" => "Queue creation successful"]);
+    header("location: ../index.php?successful");
     exit;
 } else {
-    header("Content-Type: application/json");
-    echo json_encode(["error" => "No POST request"]);
+    header("location: ../queue_creation.php?error=unknown");
     exit;
 }

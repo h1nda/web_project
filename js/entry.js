@@ -31,15 +31,30 @@ function pollEntryFlag(qid, sid) {
                     
                 } else {
                     link.addEventListener("click", function() {
-                        callRemoval(qid, sid);
-                        startTimer(qid, sid);
-                        
+                        callRemoval(qid, sid);                    
                     }); 
+                    startTimer(qid, sid);
                 }
                 
             }
         });
     }, 5000);
 }
+function pollPreceding(qid) {
+    var fd = new FormData();
+    fd.append("qid", qid);
+    setInterval(function() {
+        fetch("includes/waiting_students.php", {
+            method: "POST",
+            body: fd
+        })
+        .then(response => response.json())
+        .then(data => {
+            var numStudents = data.num_students;
+            document.getElementById("inFront").textContent = numStudents;
+        });
+    }, 5000);
+}
 
+pollPreceding(qid);
 pollEntryFlag(qid, sid);

@@ -2,7 +2,7 @@
 require_once "db_handler.php";
 
 $stmt = $conn->prepare("SELECT id, queue_name, status FROM queue_info WHERE user_id=?;");
-$stmt->execute($_SESSION['id']);
+$stmt->execute([$_SESSION['id']]);
 $result = $stmt->get_result();
 
 $rows = '';

@@ -39,6 +39,7 @@
     <title>FMI queues</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="icon" type="image/x-icon" href="media/favicon.ico">
 </head>
 <body>
     <?php include_once "includes/chat_sidebar.php"; ?>
@@ -49,7 +50,7 @@
     </header>
         <section class="open-queue">
             <h2>Queuing for <?php echo $name?>...</h2>
-            <p>Students in front of you: X</p>
+            <p>Students in front of you: <span id="inFront">X</span></p>
             <a id="entryLink" href="<?php echo $link; ?>" style="display: none;">Enter the meeting!</a>
             <p id="timer" style="display: none;">Time remaining: <span id="countdown">1:00</span></p>
         <script>
